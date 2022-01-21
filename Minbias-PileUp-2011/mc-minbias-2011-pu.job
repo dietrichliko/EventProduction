@@ -1,5 +1,6 @@
 #
-# Simulate MinBias 7TeV for 2011 using CNS Opendata using cmsconnect
+# Simulate MinBias 7TeV for 2011 with PileUP 
+# using CNS Opendata using cmsconnect
 #
 # Configuration from yilun.wu@Vanderbilt.edu
 # http://opendata.cern.ch/record/36
@@ -7,19 +8,19 @@
 # Dietrich.Liko@oeaw.ac.at
 
 Universe = vanilla
-Executable = mc-minbias-2011.sh
+Executable = mc-minbias-2011-pu.sh
 
 # Arguments: FIRST_EVENT EVENTS_PER_PROCESS CONDOR_JOB_ID CONDOR_PROCESS_ID 
 Arguments = 60000 100 $(Cluster) $(Process)
 
 should_transfer_files = YES
 transfer_input_files = MinBias_TuneZ2_7TeV_pythia6_cff.py,START53_LV6A1.tgz
-Error = log/mc-minbias-2011_$(Cluster)-$(Process).err
-Output = log/mc-minbias-2011_$(Cluster)-$(Process).out
-Log = log/mc-minbias-2011_$(Cluster).log
+Error = log/mc-minbias-2011-pu_$(Cluster)-$(Process).err
+Output = log/mc-minbias-2011-pu_$(Cluster)-$(Process).out
+Log = log/mc-minbias-2011-pu_$(Cluster).log
 
 # Has to be adapted for your storage
-environment="OUTPUT_URL=root://root://eos.grid.vbc.ac.at//eos/vbc/experiments/cms/store/user/liko/mc-minbias-2011 BACKUP_URL=root://eosuser.cern.ch//eos/user/l/liko/mc-minbias-2011"
+environment="OUTPUT_URL=root://root://eos.grid.vbc.ac.at//eos/vbc/experiments/cms/store/user/liko/mc-minbias-2011-pu BACKUP_URL=root://eosuser.cern.ch//eos/user/l/liko/mc-minbias-2011-pu"
 
 # Has to be adapted for your site
 +DESIRED_Sites = "T2_AT_Vienna"

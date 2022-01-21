@@ -13,7 +13,7 @@ voms-proxy-init -voms cms -rfc -valid 192:0
 Clone repo
 ```bash
 git clone https://gitlab.cern.ch/....
-cd EventProduction/MinBias-NoPileUp-2011
+cd EventProduction/MinBias-PileUp-2011
 ```
 
 Download production fragment for the process
@@ -26,12 +26,12 @@ Create tar file from the required confdb
 tar czvf START53_LV6A1.tgz -C /cvmfs/cms-opendata-conddb.cern.ch/ START53_LV6A1 START53_LV6A1.db
 ```
 
-Change the site and and storage url in ```mc-minbias-2011.job``` according to your environment. Set the required number of events per
+Change the site and and storage url in ```mc-minbias-2011-pu.job``` according to your environment. Set the required number of events per
 process and the required number of processes.
 
 Submit jobs
 ```bash
-condor_submit mc-minbias-2011.job
+condor_submit mc-minbias-2011-pu.job
 ```
 
 Job Status
