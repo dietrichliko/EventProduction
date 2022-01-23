@@ -10,19 +10,26 @@ Universe = vanilla
 Executable = mc-minbias-2011.sh
 
 # Arguments: FIRST_EVENT EVENTS_PER_PROCESS CONDOR_JOB_ID CONDOR_PROCESS_ID 
-Arguments = 60000 100 $(Cluster) $(Process)
+Arguments = 600000 10000 $(Cluster) $(Process)
 
 should_transfer_files = YES
 transfer_input_files = MinBias_TuneZ2_7TeV_pythia6_cff.py,START53_LV6A1.tgz
+transfer_output_files = ""
 Error = log/mc-minbias-2011_$(Cluster)-$(Process).err
 Output = log/mc-minbias-2011_$(Cluster)-$(Process).out
 Log = log/mc-minbias-2011_$(Cluster).log
 
 # Has to be adapted for your storage
-environment="OUTPUT_URL=root://root://eos.grid.vbc.ac.at//eos/vbc/experiments/cms/store/user/liko/mc-minbias-2011 BACKUP_URL=root://eosuser.cern.ch//eos/user/l/liko/mc-minbias-2011"
+environment="OUTPUT_URL=root://eos.grid.vbc.ac.at//eos/vbc/experiments/cms/store/user/liko/mc-minbias-2011 BACKUP_URL=root://eosuser.cern.ch//eos/user/l/liko/mc-minbias-2011"
 
 # Has to be adapted for your site
-+DESIRED_Sites = "T2_AT_Vienna"
+#+DESIRED_Sites = "T2_AT_Vienna"
++DESIRED_Sites="T2_AT_Vienna,T2_BE_IIHE,T2_BE_UCL,T2_CH_CERN,T2_CH_CSCS,T2_DE_DESY,T2_DE_RWTH,T2_EE_Estonia,\
+T2_ES_CIEMAT,T2_ES_IFCA,T2_FI_HIP,T2_FR_CCIN2P3,T2_FR_GRIF_IRFU,T2_FR_GRIF_LLR,T2_FR_IPHC,T2_GR_Ioannina,T2_HU_Budapest,T2_IN_TIFR,T2_IT_Bari,\
+T2_IT_Legnaro,T2_IT_Pisa,T2_IT_Rome,T2_KR_KNU,T2_PK_NCP,T2_PL_Swierk,T2_PL_Warsaw,T2_PT_NCG_Lisbon,T2_RU_IHEP,T2_RU_INR,T2_RU_ITEP,\
+T2_RU_JINR,T2_RU_PNPI,T2_RU_RRC_KI,T2_RU_SINP,T2_TH_CUNSTDA,T2_TR_METU,T2_UA_KIPT,T2_UK_London_Brunel,T2_UK_London_IC,T2_UK_SGrid_Bristol,T2_UK_SGrid_RALPP,\
+T3_CO_Uniandes,T3_FR_IPNL,T3_GR_IASA,T3_HU_Debrecen,T3_IT_Bologna,T3_IT_Napoli,T3_IT_Perugia,T3_IT_Trieste,T3_KR_KNU,T3_MX_Cinvestav,T3_RU_FIAN,\
+T3_TW_NCU,T3_TW_NTU_HEP,T3_UK_London_QMUL,T3_UK_SGrid_Oxford"
 +SingularityImage = "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmsopendata/cmssw_5_3_32:latest"
 
 # Number of tasks to run in parallel
