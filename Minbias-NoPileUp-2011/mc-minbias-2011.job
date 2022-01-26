@@ -10,7 +10,7 @@ Universe = vanilla
 Executable = mc-minbias-2011.sh
 
 # Arguments: FIRST_EVENT EVENTS_PER_PROCESS CONDOR_JOB_ID CONDOR_PROCESS_ID 
-Arguments = 600000 10000 $(Cluster) $(Process)
+Arguments = 1600000 5000 $(Cluster) $(Process)
 
 should_transfer_files = YES
 transfer_input_files = MinBias_TuneZ2_7TeV_pythia6_cff.py,START53_LV6A1.tgz
@@ -33,4 +33,4 @@ T3_TW_NCU,T3_TW_NTU_HEP,T3_UK_London_QMUL,T3_UK_SGrid_Oxford"
 +SingularityImage = "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmsopendata/cmssw_5_3_32:latest"
 
 # Number of tasks to run in parallel
-Queue 10
+Queue 200

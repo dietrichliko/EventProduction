@@ -16,7 +16,6 @@ FIRST_EVENT=$((FIRST_EVENT + EVENTS*CONDOR_PROC_ID))
 
 # untar the confdb
 tar xzvf START53_LV6A1.tgz
-find .
 
 # Patch for conditions database
 
@@ -61,7 +60,7 @@ cmsDriver.py Configuration/GenProduction/python/MinBias_TuneZ2_7TeV_pythia6_cff.
 	--step GEN,SIM \
 	--python_filename MinBias-Summer11-GENSIM.py \
 	--no_exec \
-    --fileout MinBias-Summer11-GENSIM.root \
+        --fileout MinBias-Summer11-GENSIM.root \
 	--number "$EVENTS"
 
 patch_first_event MinBias-Summer11-GENSIM.py
@@ -79,8 +78,8 @@ cmsDriver.py step1 \
 	--datatier GEN-RAW \
 	--conditions=START53_LV6A1::All \
 	--eventcontent RAWSIM \
-	--pileup_input root://eos.grid.vbc.ac.at//eos/vbc/experiments/cms/store/user//liko/mc-minbias-2011/MinBias-Summer11-RECO-11288508-9.root \
-    --pileup 2011_FinalDist_OOTPU \
+	--pileup_input root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2011/Summer11LegDR/MinBias_TuneZ2_7TeV-pythia6/GEN-SIM/START53_LV4-v1/10000/00064CCC-A218-E311-A2E9-D485646A4E1A.root \
+        --pileup 2011_FinalDist_OOTPU \
 	--python_filename MinBias-Summer11-HLT.py \
 	--no_exec \
 	--filein file:MinBias-Summer11-GENSIM.root \
