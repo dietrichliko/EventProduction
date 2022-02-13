@@ -72,7 +72,8 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 #    "PoolSource", fileNames=cms.untracked.vstring(*files))
 
 sourcePath=os.environ['SOURCEDIR']
-sourceFiles = [ 'root://eos.grid.vbc.ac.at/%s/%s' % (sourcePath, name) for name in os.listdir(sourcePath) ]
+sourceFiles = [ 'root://eosuser.cern.ch/%s/%s' % (sourcePath, name) for name in os.listdir(sourcePath) ]
+sourceFiles=sourceFiles[:1]
 print 'Number of input files: %d' % len(sourceFiles)
 
 process.source = cms.Source("PoolSource", fileNames = cms.untracked.vstring(*sourceFiles))

@@ -18,22 +18,21 @@ if [ -n "$SLURM_JOB_ID" ];  then
 else
     # otherwise: started with bash. Get the real location.
     SCRIPTDIR=$(dirname "$(realpath "$0")")
-    WORKDIR="$SCRATCHDIR/work-$$"
+    WORKDIR="/afs/cern.ch/work/l/liko/work-$$"
 fi
 mkdir "$WORKDIR"
 cd "$WORKDIR" || exit 1
 
-# initialise directories
-singularity run /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmsopendata/cmssw_5_3_32:latest pwd
+git clone --depth 1 --branch master https://github.com/cms-legacydata-analyses/PhysObjectExtractorTool.git
+cp  "$SCRIPTDIR/poet_minbias_cfg.py" .
 
-cd CMSSW_5_3_32/src || exit 1
-git clone https://github.com/cms-legacydata-analyses/PhysObjectExtractorTool.git
+sif="/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmsopendata/cmssw_5_3_32:latest"
 
-cp "$SCRIPTDIR/poet_minbias_cfg.py" .
-
-cd ../.. || exit 1
-
-singularity run /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmsopendata/cmssw_5_3_32:latest <<EOF
+unset SCRAM_ARCH
+singularity run -H $WORKDIR -B /eos "$sif" <<EOF
+    pwd
+    set -x
+    mv ../../PhysObjectExtractorTool ../../poet_minbias_cfg.py .
     scram b
     cmsRun poet_minbias_cfg.py False False
 EOF
